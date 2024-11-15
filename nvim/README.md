@@ -1,0 +1,3 @@
+# 💤 LazyVim
+
+LazyVim config file

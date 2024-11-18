@@ -4,3 +4,10 @@
 
 vim.cmd("autocmd BufEnter * set formatoptions-=cro")
 vim.cmd("autocmd BufEnter * setlocal formatoptions-=cro")
+
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+  pattern = ".env*",
+  callback = function()
+    vim.bo.filetype = "env"
+  end,
+})

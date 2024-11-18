@@ -78,7 +78,6 @@ return {
   },
   {
     "nvimtools/none-ls.nvim",
-    debug = true,
     config = function()
       local null_ls = require("null-ls")
       local cspell = require("cspell")

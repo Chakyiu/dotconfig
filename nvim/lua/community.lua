@@ -29,6 +29,7 @@ return {
   { import = "astrocommunity.pack.ps1" },
   { import = "astrocommunity.pack.proto" },
   { import = "astrocommunity.pack.svelte" },
+  { import = "astrocommunity.pack.bash" },
   -- completion plugins
   { import = "astrocommunity.completion.copilot-cmp" },
   -- editing support plugins
@@ -40,4 +41,6 @@ return {
   { import = "astrocommunity.indent.mini-indentscope" },
   -- utility plugins
   { import = "astrocommunity.utility.lua-json5" },
+  -- split and windows plugins
+  { import = "astrocommunity.split-and-window.colorful-winsep-nvim" },
 }

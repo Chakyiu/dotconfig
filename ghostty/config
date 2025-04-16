@@ -1,0 +1,14 @@
+theme = catppuccin-macchiato
+
+font-family = "JetBrainsMono Nerd Font Mono"
+font-family-bold = "JetBrainsMono Nerd Font Mono"
+font-family-italic = "JetBrainsMono Nerd Font Mono"
+font-family-bold-italic = "JetBrainsMono Nerd Font Mono"
+font-size = 13
+font-style = Bold
+font-style-bold = Bold
+font-style-italic = Bold Italic
+font-style-bold-italic = Bold Italic
+
+window-save-state = always
+

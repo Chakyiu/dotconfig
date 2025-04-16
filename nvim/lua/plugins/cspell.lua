@@ -12,6 +12,9 @@ local CSPELL_CONFIG_FILES = {
 local function find_file(filename, cwd)
   ---@type string|nil
   local current_dir = cwd
+  if not current_dir then
+    current_dir = vim.fn.getcwd()
+  end
   local root_dir = "/"
 
   repeat
@@ -31,6 +34,10 @@ end
 ---@param cwd string
 ---@return string|nil
 local find_cspell_config_path = function(cwd)
+  if not cwd then
+    cwd = vim.fn.getcwd()
+  end
+
   for _, file in ipairs(CSPELL_CONFIG_FILES) do
     local path = find_file(file, cwd or vim.loop.cwd())
     if path then
@@ -46,6 +53,9 @@ end
 local function find_vscode_config_dir(cwd)
   ---@type string|nil
   local current_dir = cwd
+  if not current_dir then
+    current_dir = vim.fn.getcwd()
+  end
   local root_dir = "/"
 
   repeat
@@ -68,7 +78,9 @@ return {
   },
   {
     "nvimtools/none-ls.nvim",
+    dependencies = { "davidmh/cspell.nvim" },
     opts = function(_, opts)
+      local cspell = require("cspell")
       local config = {
         find_json = function(cwd)
           local vscode_dir = find_vscode_config_dir(cwd)
@@ -80,17 +92,10 @@ return {
         end,
         decode_json = require("json5").parse,
       }
-      local cspell = require("cspell")
-      table.insert(
-        opts.sources,
-        cspell.diagnostics.with({
-          config = config,
-          diagnostics_postprocess = function(diagnostic)
-            diagnostic.severity = vim.diagnostic.severity["HINT"]
-          end,
-        })
-      )
+
+      table.insert(opts.sources, cspell.diagnostics.with({ config = config }))
       table.insert(opts.sources, cspell.code_actions.with({ config = config }))
+      opts.fallback_severity = vim.diagnostic.severity.HINT
     end,
   },
 }

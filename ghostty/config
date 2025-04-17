@@ -12,3 +12,4 @@ font-style-bold-italic = Bold Italic
 
 window-save-state = always
 
+keybind = cmd+enter=toggle_maximize

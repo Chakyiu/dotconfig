@@ -12,3 +12,20 @@
 -- * disable auto comment in newline
 vim.cmd("autocmd bufenter * set formatoptions-=cro")
 vim.cmd("autocmd bufenter * setlocal formatoptions-=cro")
+
+-- * auto title
+local function set_titlestring()
+  local cwd = vim.fn.getcwd()
+  local root_dir = vim.fn.fnamemodify(cwd, ":t")
+  vim.opt.titlestring = "n " .. root_dir
+  vim.opt.title = true
+end
+
+set_titlestring()
+
+-- * Add command to copy current Buffer relative path
+vim.api.nvim_create_user_command("CopyRelativePath", function()
+  local relative_path = vim.fn.fnamemodify(vim.fn.expand("%"), ":.")
+  vim.fn.setreg("+", relative_path)
+  print("Relative path copied to clipboard: " .. relative_path)
+end, {})

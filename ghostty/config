@@ -13,3 +13,7 @@ font-style-bold-italic = Bold Italic
 window-save-state = always
 
 keybind = cmd+enter=toggle_maximize
+
+macos-option-as-alt = left
+keybind = alt+left=unbind
+keybind = alt+right=unbind

@@ -22,10 +22,3 @@ local function set_titlestring()
 end
 
 set_titlestring()
-
--- * Add command to copy current Buffer relative path
-vim.api.nvim_create_user_command("CopyRelativePath", function()
-  local relative_path = vim.fn.fnamemodify(vim.fn.expand("%"), ":.")
-  vim.fn.setreg("+", relative_path)
-  print("Relative path copied to clipboard: " .. relative_path)
-end, {})

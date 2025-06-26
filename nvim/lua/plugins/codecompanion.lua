@@ -51,7 +51,7 @@ return {
         port = 37373,
         config = os.getenv("HOME") .. "/.config/nvim/mcpservers.json",
         log = {
-          level = vim.log.levels.DEBUG,
+          level = vim.log.levels.WARN,
           to_file = true, -- ~/.local/state/nvim/mcphub.log
         },
         on_ready = function()

@@ -45,9 +45,10 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
     },
-    build = "npm install -g mcp-hub@latest",
+    build = "bundled_build.lua",
     config = function()
       require("mcphub").setup({
+        use_bundled_binary = true,
         port = 37373,
         config = os.getenv("HOME") .. "/.config/nvim/mcpservers.json",
         log = {

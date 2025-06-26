@@ -45,14 +45,13 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
     },
-    optional = true,
     build = "npm install -g mcp-hub@latest",
     config = function()
       require("mcphub").setup({
-        port = 3000,
-        config = vim.fn.expand("~/.config/nvim/mcpservers.json"),
+        port = 37373,
+        config = os.getenv("HOME") .. "/.config/nvim/mcpservers.json",
         log = {
-          level = vim.log.levels.WARN,
+          level = vim.log.levels.DEBUG,
           to_file = true, -- ~/.local/state/nvim/mcphub.log
         },
         on_ready = function()
@@ -72,6 +71,16 @@ return {
       "ravitemer/mcphub.nvim",
     },
     opts = {
+      extensions = {
+        mcphub = {
+          callback = "mcphub.extensions.codecompanion",
+          opts = {
+            make_vars = true,
+            make_slash_commands = true,
+            show_result_in_chat = true,
+          },
+        },
+      },
       adapters = {
         copilot = function()
           return require("codecompanion.adapters").extend("copilot", {
@@ -100,6 +109,17 @@ return {
             end,
             user = " User",
           },
+          -- tools = {
+          --   ["mcp"] = {
+          --     callback = function()
+          --       return require("mcphub.extensions.codecompanion")
+          --     end,
+          --     description = "Call tools and resources from the MCP Servers",
+          --     opts = {
+          --       required_approval = true,
+          --     },
+          --   },
+          -- },
           slash_commands = {
             ["buffer"] = {
               callback = "strategies.chat.slash_commands.buffer",
@@ -280,15 +300,5 @@ return {
       -- Setup the entire opts table
       require("codecompanion").setup(opts)
     end,
-    extensions = {
-      mcphub = {
-        callback = "mcphub.extensions.codecompanion",
-        opts = {
-          make_vars = true,
-          make_slash_commands = true,
-          show_result_in_chat = true,
-        },
-      },
-    },
   },
 }

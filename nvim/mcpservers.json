@@ -1,2 +1,17 @@
-{ "mcpServers": {} }
-
+{
+  "nativeMCPServers": [
+    
+  ],
+  "mcpServers": {
+    "time": {
+      "args": [
+        "mcp-server-time",
+        "--local-timezone=Asia/Hong_Kong"
+      ],
+      "disabled_tools": [
+        
+      ],
+      "command": "uvx"
+    }
+  }
+}
